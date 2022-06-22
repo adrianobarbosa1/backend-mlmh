@@ -1,4 +1,4 @@
-const Joi = require("joi");
+const Joi = require('joi')
 
 const createRegister = {
   body: Joi.object().keys({
@@ -42,6 +42,9 @@ const createRegister = {
     gf_cpf: Joi.string().optional(),
     gf_dt_nascimento: Joi.string().optional(),
     gf_grau_parentesco: Joi.string().optional(),
+    gf_quantidade: Joi.string().optional(),
+    gf_cpf_certidao: Joi.string().optional(),
+    gf_certidao: Joi.string().optional(),
   }),
 };
 

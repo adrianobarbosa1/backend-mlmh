@@ -127,6 +127,15 @@ const registerSchema = mongoose.Schema(
     gf_grau_parentesco: {
       type: String,
     },
+    gf_quantidade: {
+      type: String,
+    },
+    gf_cpf_certidao: {
+      type: String,
+    },
+    gf_certidao: {
+      type: String,
+    },
     protocolo: {
       type: String,
       required: true,
