@@ -14,14 +14,6 @@ const createUser = async (userBody) => {
   return User.create(userBody);
 };
 
-//Create a user with CPF
-// const createUser = async (userBody) => {
-//   if (await User.isCpfTaken(userBody.cpf)) {
-//     throw new ApiError(httpStatus.BAD_REQUEST, 'CPF already taken');
-//   }
-//   return User.create(userBody);
-// };
-
 /**
  * Query for users
  * @param {Object} filter - Mongo filter

@@ -16,34 +16,32 @@ const ApiError = require('./utils/ApiError');
 
 const app = express();
 
-//CONFIG
-if(config.env !== 'test'){
+if (config.env !== 'test') {
   app.use(morgan.successHandler);
   app.use(morgan.errorHandler);
 }
-//SECURITY HTTP HEADERS REQUEST BODY
+
+// set security HTTP headers
 app.use(helmet());
 
-//PARSER JSON REQUEST BODY
+// parse json request body
 app.use(express.json());
-// app.use(express.json({ limit: 1.5 * 1024 * 1024 }));
 
-//PARSER URLCONDED
+// parse urlencoded request body
 app.use(express.urlencoded({ extended: true }));
-// app.use(express.urlencoded({ extended: true, limit: 1.5 * 1024 * 1024 }));
 
-//SANITIZE REQUEST DATA
+// sanitize request data
 app.use(xss());
 app.use(mongoSanitize());
 
-//GZIP COMPRESSION
+// gzip compression
 app.use(compression());
 
-//ENABLE CORS
-if (config.env === 'development'){
+// enable cors
+if (config.env === 'development') {
   app.use(cors());
   app.options('*', cors());
-} 
+}
 
 // jwt authentication
 app.use(passport.initialize());
@@ -54,7 +52,7 @@ if (config.env === 'production') {
   app.use('/api/v1/auth', authLimiter);
 }
 
-//ROUTES
+// v1 api routes
 app.use('/api/v1', routes);
 
 // send back a 404 error for any unknown api request

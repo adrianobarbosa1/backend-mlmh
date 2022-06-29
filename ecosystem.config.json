@@ -1,8 +1,8 @@
 {
   "apps": [
     {
-      "name": "apiName",
-      "script": "src/server.js",
+      "name": "app",
+      "script": "src/index.js",
       "instances": 1,
       "autorestart": true,
       "watch": false,
