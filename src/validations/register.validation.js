@@ -28,7 +28,6 @@ const createRegister = {
     municipio: Joi.string().required(),
     uf: Joi.string().required(),
     reside_ano: Joi.string().required(),
-    reside_mes: Joi.string().required(),
     renda_bruta: Joi.string().required(),
     cadunico: Joi.string().required(),
     numero_cadunico: Joi.string().optional(),
@@ -41,13 +40,13 @@ const createRegister = {
     integrantes: Joi.array()
       .items(
         Joi.object({
-          integrante: Joi.string().optional(),
-          gf_nome: Joi.string().optional(),
-          gf_dt_nascimento: Joi.string().optional(),
-          gf_cpf: Joi.document().cpf().optional(),
-          gf_rg_certidao: Joi.string().optional(),
-          gf_pcd: Joi.string().optional(),
-          gf_parentesco: Joi.string().optional(),
+          integrante: Joi.number().optional().allow(''),
+          gf_nome: Joi.string().optional().allow(''),
+          gf_dt_nascimento: Joi.string().optional().allow(''),
+          gf_cpf: Joi.document().cpf().optional().allow(''),
+          gf_rg_certidao: Joi.string().optional().allow(''),
+          gf_pcd: Joi.string().optional().allow(''),
+          gf_parentesco: Joi.string().optional().allow(''),
         })
       )
       .optional()
