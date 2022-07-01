@@ -29,7 +29,7 @@ const createRegister = async (registerBody) => {
   registerBody.protocolo = protocolo();
   return Register.create(registerBody);
 };
-
+// testando codigo
 // Query for registers
 const queryRegisters = async (filter, options) => {
   const registers = await Register.paginate(filter, options);
