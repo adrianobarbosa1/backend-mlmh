@@ -25,7 +25,7 @@ const createRegister = {
     lote: Joi.string().optional().allow(''),
     complemento: Joi.string().optional().allow(''),
     bairro: Joi.string().optional().allow(''),
-    municipio: Joi.string().required(),
+    localidade: Joi.string().required(),
     uf: Joi.string().required(),
     reside_ano: Joi.string().required(),
     renda_bruta: Joi.string().required(),

@@ -8,9 +8,22 @@ const protocolo = require('../utils/functions');
 
 // Create a register
 const createRegister = async (registerBody) => {
+  const duplicado = await registerBody.integrantes.map((item) => {
+    if (item.gf_cpf === registerBody.cpf) {
+      return true;
+    }
+    return false;
+  });
+
+  if (duplicado) throw new ApiError(httpStatus.BAD_REQUEST, 'CPF duplicado!');
+
   const cpfExist = await Register.findOne({ cpf: registerBody.cpf });
   if (cpfExist) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'CPF já está registrado!');
+  }
+  const cpfExistParente = await Register.find({ 'integrantes.gf_cpf': registerBody.cpf });
+  if (cpfExistParente[0]) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'CPF já está registrado como integrante!');
   }
   // eslint-disable-next-line no-param-reassign
   registerBody.protocolo = protocolo();

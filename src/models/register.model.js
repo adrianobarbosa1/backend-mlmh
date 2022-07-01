@@ -39,7 +39,7 @@ const registerSchema = mongoose.Schema(
     lote: { type: String },
     complemento: { type: String },
     bairro: { type: String },
-    municipio: { type: String, required: true },
+    localidade: { type: String, required: true },
     uf: { type: String, required: true },
     reside_ano: { type: String, required: true },
     renda_bruta: { type: String, required: true },
