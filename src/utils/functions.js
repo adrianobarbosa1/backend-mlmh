@@ -6,7 +6,7 @@ const protocolo = () => {
   let hex = uuidv4();
   hex = hex.slice(31);
   const protocoloRandom = `${moment().format('DDhhss').toString()}${hex}`;
-  return protocoloRandom;
+  return protocoloRandom.toUpperCase();
 };
 
 module.exports = protocolo;
