@@ -8,14 +8,11 @@ const protocolo = require('../utils/functions');
 
 // Create a register
 const createRegister = async (registerBody) => {
-  const duplicado = await registerBody.integrantes.map((item) => {
+  registerBody.integrantes.forEach((item) => {
     if (item.gf_cpf === registerBody.cpf) {
-      return true;
+      throw new ApiError(httpStatus.BAD_REQUEST, 'CPF duplicado!');
     }
-    return false;
   });
-
-  if (duplicado) throw new ApiError(httpStatus.BAD_REQUEST, 'CPF duplicado!');
 
   const cpfExist = await Register.findOne({ cpf: registerBody.cpf });
   if (cpfExist) {
