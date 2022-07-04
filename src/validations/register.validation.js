@@ -54,6 +54,12 @@ const createRegister = {
   }),
 };
 
+const getCpf = {
+  params: Joi.object().keys({
+    cpf: Joi.document().cpf(),
+  }),
+};
+
 const getRegisters = {
   query: Joi.object().keys({
     name: Joi.string(),
@@ -85,6 +91,7 @@ const remove = {
 
 module.exports = {
   createRegister,
+  getCpf,
   getRegisters,
   update,
   remove,

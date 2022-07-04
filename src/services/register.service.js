@@ -33,6 +33,17 @@ const queryRegisters = async (filter, options) => {
   return registers;
 };
 
+const getCpfIfExist = async (cpf) => {
+  const cpfExist = await Register.findOne({ cpf });
+  if (cpfExist) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'CPF já está registrado!');
+  }
+  const cpfExistParente = await Register.find({ 'integrantes.gf_cpf': cpf });
+  if (cpfExistParente[0]) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'CPF já está registrado como integrante!');
+  }
+};
+
 // Get Register by cpf
 const getRegisterByCpf = async (cpf) => {
   return Register.find({ cpf });
@@ -42,4 +53,5 @@ module.exports = {
   createRegister,
   queryRegisters,
   getRegisterByCpf,
+  getCpfIfExist,
 };
