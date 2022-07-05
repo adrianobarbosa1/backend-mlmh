@@ -64,7 +64,7 @@ If you did not create an account, then ignore this email.`;
 };
 
 const sendProtocolo = async (to, name, protolo) => {
-  const subject = 'Protocol Meu Lote Minha História';
+  const subject = 'Protocolo Meu Lote Minha História';
   const text = 'Não responda esse email';
   const html = `<div>
   <table
