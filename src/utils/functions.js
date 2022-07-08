@@ -32,7 +32,7 @@ const createWriteTxtProtocol = async (register) => {
       const zap = `55${newfone}`;
       const textZap = `${zap};${protocol}\n`;
       fs.writeFile(
-        `./zapAndProtocol/${index}.txt`,
+        `root/var/www/html/meuloteMH/cdn/${index}.txt`,
         textZap,
         {
           flag: 'a',
