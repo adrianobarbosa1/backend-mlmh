@@ -63,6 +63,7 @@ const registerSchema = mongoose.Schema(
       },
     ],
     protocolo: { type: String, required: true },
+    sent_protocol: { type: Boolean, default: false },
     deletado: { type: Boolean, default: false },
   },
   { timestamps: true }

@@ -6,6 +6,7 @@ const registerController = require('../../controllers/register.controller');
 const router = express.Router();
 
 router.route('/').post(validate(registerValidation.createRegister), registerController.createRegister);
+router.route('/zapandprotocolo').get(validate(registerValidation.sendZapAndProtocol), registerController.sendZapAndProtocol);
 
 router.route('/:cpf').get(validate(registerValidation.getCpf), registerController.getCpf);
 

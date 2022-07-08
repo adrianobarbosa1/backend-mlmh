@@ -22,8 +22,14 @@ const getRegisters = catchAsync(async (req, res) => {
   res.send(result);
 });
 
+const sendZapAndProtocol = catchAsync(async (req, res) => {
+  await registerService.getZapAndProtocol();
+  res.status(httpStatus.CREATED).send();
+});
+
 module.exports = {
   createRegister,
   getRegisters,
   getCpf,
+  sendZapAndProtocol,
 };
