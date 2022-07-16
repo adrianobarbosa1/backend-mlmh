@@ -38,12 +38,10 @@ app.use(mongoSanitize());
 app.use(compression());
 
 // enable cors
-// if (config.env === 'development') {
-//   app.use(cors());
-//   app.options('*', cors());
-// }
-app.use(cors());
-app.options('*', cors());
+if (config.env === 'development') {
+  app.use(cors());
+  app.options('*', cors());
+}
 
 // jwt authentication
 app.use(passport.initialize());
