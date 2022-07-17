@@ -132,7 +132,7 @@ const sendProtocolo = async (to, name, protolo) => {
                           A inscrição no Programa
                           <strong>MEU LOTE MINHA HISTÓRIA</strong> seguirá
                           <strong
-                            >EDITAL DE CHAMAMENTO PÚBLICO Nº xxx/2022</strong
+                            >EDITAL DE CHAMAMENTO PÚBLICO Nº 001/2022</strong
                           >
                           de acordo com Lei Complementar Municipal nº 493, de 19
                           de maio de 2022. A pessoa que for desclassificada por
@@ -144,9 +144,9 @@ const sendProtocolo = async (to, name, protolo) => {
                             >Pra saber mais sobre o funcionamento do programa Meu
                             lote minha historia, leia o
                             <a
-                              href="https://image.comunicacao.bancointer.com.br/lib/fe3b15707564057f721776/m/4/CC039_2_TERMO_DE_ADESAO_E_CONDICOES_GERAIS_DO_PROGRAMA_DE_CASHBACK_3.pdf"
+                              href="CDN"
                               target="_blank"
-                              data-saferedirecturl="https://www.google.com/url?q=https://image.comunicacao.bancointer.com.br/lib/fe3b15707564057f721776/m/4/CC039_2_TERMO_DE_ADESAO_E_CONDICOES_GERAIS_DO_PROGRAMA_DE_CASHBACK_3.pdf&amp;source=gmail&amp;ust=1656866852821000&amp;usg=AOvVaw1i6Q9yQ8iFtUk-36RuoxPu"
+                              data-saferedirecturl="https://editalasercolocadonocdn"
                               >EDITAL</a
                             >.</font
                           >
