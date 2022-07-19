@@ -42,11 +42,17 @@ const queryRegisters = async (filter, options) => {
 const getCpfIfExist = async (cpf) => {
   const cpfExist = await Register.findOne({ cpf });
   if (cpfExist) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'CPF já está registrado!');
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'Sua inscrição foi realizada. Favor aguardar o envio do protocolo pelos contatos informados no cadastro.'
+    );
   }
   const cpfExistParente = await Register.find({ 'integrantes.gf_cpf': cpf });
   if (cpfExistParente[0]) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'CPF já está registrado como integrante!');
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'Sua inscrição foi realizada. Favor aguardar o envio do protocolo pelos contatos informados no cadastro.'
+    );
   }
 };
 
