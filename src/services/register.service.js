@@ -16,11 +16,17 @@ const createRegister = async (registerBody) => {
 
   const cpfExist = await Register.findOne({ cpf: registerBody.cpf });
   if (cpfExist) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'CPF já está registrado!');
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'Sua inscrição foi realizada. Favor aguardar o envio do protocolo pelos contatos informados no cadastro.'
+    );
   }
   const cpfExistParente = await Register.find({ 'integrantes.gf_cpf': registerBody.cpf });
   if (cpfExistParente[0]) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'CPF já está registrado como integrante!');
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'Sua inscrição foi realizada. Favor aguardar o envio do protocolo pelos contatos informados no cadastro.'
+    );
   }
   // eslint-disable-next-line no-param-reassign
   registerBody.protocolo = protocolo();
