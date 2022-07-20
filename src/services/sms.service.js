@@ -29,9 +29,8 @@ const sendSms = async (to, msg) => {
 };
 
 const sendProtocolSms = async (to, nome, protocolo) => {
-  const msg = `Olá, ${nome}
-  Você se cadastrou no programa, Meu lote minha história, esse é o seu
-  número de protocolo. ${protocolo}`;
+  const msg = `Olá, ${nome},
+  Seu cadastro foi realizado com sucesso , esse é o número do seu Protocolo: ${protocolo}`;
   const resp = await sendSms(to, msg);
   return resp;
 };
