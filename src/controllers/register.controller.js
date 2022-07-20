@@ -2,11 +2,11 @@ const httpStatus = require('http-status');
 const pick = require('../utils/pick');
 // const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
-const { registerService, emailService, smsService } = require('../services');
+const { registerService, smsService } = require('../services');
 
 const createRegister = catchAsync(async (req, res) => {
   const { protocolo } = await registerService.createRegister(req.body);
-  await emailService.sendProtocolo(req.body.email, req.body.nome, protocolo);
+  // await emailService.sendProtocolo(req.body.email, req.body.nome, protocolo);
   await smsService.sendProtocolSms(req.body.fone_celular, req.body.nome, protocolo);
   res.status(httpStatus.CREATED).json({ protocolo });
 });
