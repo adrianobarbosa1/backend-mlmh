@@ -2,11 +2,12 @@ const httpStatus = require('http-status');
 const pick = require('../utils/pick');
 // const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
-const { registerService, emailService } = require('../services');
+const { registerService, emailService, smsService } = require('../services');
 
 const createRegister = catchAsync(async (req, res) => {
   const { protocolo } = await registerService.createRegister(req.body);
   await emailService.sendProtocolo(req.body.email, req.body.nome, protocolo);
+  await smsService.sendProtocolSms(req.body.fone_celular, req.body.nome, protocolo);
   res.status(httpStatus.CREATED).json({ protocolo });
 });
 
@@ -27,9 +28,16 @@ const sendZapAndProtocol = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send();
 });
 
+const sendSms = catchAsync(async (req, res) => {
+  await smsService.sendProtocolSms('62993680832', 'ADRIANO BARBOSA', '190339B4F5A');
+  // await registerService.postSms();
+  res.status(httpStatus.CREATED).json({ message: 'ok' });
+});
+
 module.exports = {
   createRegister,
   getRegisters,
   getCpf,
   sendZapAndProtocol,
+  sendSms,
 };

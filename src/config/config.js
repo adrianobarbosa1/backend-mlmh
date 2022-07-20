@@ -23,6 +23,8 @@ const envVarsSchema = Joi.object()
     SMTP_USERNAME: Joi.string().description('username for email server'),
     SMTP_PASSWORD: Joi.string().description('password for email server'),
     EMAIL_FROM: Joi.string().description('the from field in the emails sent by the app'),
+    SMS_USERNAME: Joi.string().description('username for sms server'),
+    SMS_PASSWORD: Joi.string().description('password for sms server'),
   })
   .unknown();
 
@@ -60,5 +62,9 @@ module.exports = {
       },
     },
     from: envVars.EMAIL_FROM,
+  },
+  sms: {
+    user: envVars.SMS_USERNAME,
+    pass: envVars.SMS_PASSWORD,
   },
 };
