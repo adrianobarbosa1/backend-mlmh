@@ -3,7 +3,7 @@ const moment = require('moment');
 const uuidv4 = require('uuid');
 const fs = require('fs');
 
-const protocolo = () => {
+const gerarProtocolo = () => {
   let hex = uuidv4();
   hex = hex.slice(31);
   const protocoloRandom = `${moment().format('DDhhss').toString()}${hex}`;
@@ -50,6 +50,6 @@ const createWriteTxtProtocol = async (register) => {
 };
 
 module.exports = {
-  protocolo,
+  gerarProtocolo,
   createWriteTxtProtocol,
 };
