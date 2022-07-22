@@ -28,6 +28,32 @@ const sendSms = async (to, msg) => {
   return resp;
 };
 
+const sendSmsMult = async (to) => {
+  const resp = await api
+    .post(
+      '/send-sms-multiple',
+      {
+        sendSmsMultiRequest: {
+          sendSmsRequestList: to,
+        },
+      },
+
+      {
+        auth: {
+          username: config.sms.user,
+          password: config.sms.pass,
+        },
+      }
+    )
+    .then(async (response) => {
+      return response.data.sendSmsMultiResponse.statusDescription;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  return resp;
+};
+
 const sendProtocolSms = async (to, nome, protocolo) => {
   const msg = `Olá, ${nome},
   Seu cadastro foi realizado com sucesso , esse é o número do seu Protocolo: ${protocolo}`;
@@ -38,4 +64,5 @@ const sendProtocolSms = async (to, nome, protocolo) => {
 module.exports = {
   sendSms,
   sendProtocolSms,
+  sendSmsMult,
 };
