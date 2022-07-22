@@ -1,8 +1,9 @@
 const httpStatus = require('http-status');
-const { Register } = require('../models');
+const { Register, Log } = require('../models');
 // const userService = require('./user.service');
 const ApiError = require('../utils/ApiError');
-const { protocolo, createWriteTxtProtocol } = require('../utils/functions');
+const { sendSmsMult } = require('./sms.service');
+const { gerarProtocolo, createWriteTxtProtocol } = require('../utils/functions');
 
 // const { register } = require('../validations/auth.validation');
 
@@ -29,7 +30,7 @@ const createRegister = async (registerBody) => {
     );
   }
   // eslint-disable-next-line no-param-reassign
-  registerBody.protocolo = protocolo();
+  registerBody.protocolo = gerarProtocolo();
   return Register.create(registerBody);
 };
 // testando codigo
@@ -56,9 +57,39 @@ const getCpfIfExist = async (cpf) => {
   }
 };
 
+const loginWithProtocol = async (protocol) => {
+  const userProtocol = await Register.find({ protocol });
+  if (!userProtocol) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Protocolo não encontrado');
+  }
+  return userProtocol;
+};
+
 // Get Register by cpf
 const getRegisterByCpf = async (cpf) => {
   return Register.find({ cpf });
+};
+
+const postSms = async () => {
+  await Register.find({}, '_id nome fone_celular protocolo').then((registers) => {
+    const arrRegister = [];
+
+    Promise.all(
+      registers.map(async (item) => {
+        arrRegister.push({
+          to: `55${item.fone_celular.replace(/[^\d]+/g, '')}`,
+          msg: `Olá, ${item.nome},
+          Seu cadastro foi realizado com sucesso, esse é o número do seu Protocolo: ${item.protocolo}`,
+        });
+        await Log.create({
+          telefone: item.fone_celular,
+          protocolo: item.protocolo,
+          sent_sms: true,
+        });
+      })
+    );
+    sendSmsMult(arrRegister);
+  });
 };
 
 const getZapAndProtocol = async () => {
@@ -88,4 +119,6 @@ module.exports = {
   getRegisterByCpf,
   getCpfIfExist,
   getZapAndProtocol,
+  postSms,
+  loginWithProtocol,
 };
