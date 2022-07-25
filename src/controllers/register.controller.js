@@ -44,17 +44,7 @@ const updateRegister = catchAsync(async (req, res) => {
     arrimo_familia: user.arrimo_familia,
     vitima_violencia: user.vitima_violencia,
     grupo_familiar: user.grupo_familiar,
-    integrantes: [
-      {
-        integrante: user.integrantes.integrante,
-        gf_nome: user.integrantes.gf_nome,
-        gf_dt_nascimento: user.integrantes.gf_dt_nascimento,
-        gf_cpf: user.integrantes.gf_cpf,
-        gf_rg_certidao: user.integrantes.gf_rg_certidao,
-        gf_pcd: user.integrantes.gf_pcd,
-        gf_parentesco: user.integrantes.gf_parentesco,
-      },
-    ],
+    integrantes: user.integrantes,
     protocolo: user.protocolo,
   });
 });
@@ -62,7 +52,6 @@ const updateRegister = catchAsync(async (req, res) => {
 const loginProtocolo = catchAsync(async (req, res) => {
   const { protocolo } = req.body;
   const user = await registerService.loginWithProtocol(protocolo);
-  // res.send(user);
   res.json({
     nome: user.nome,
     email: user.email,
