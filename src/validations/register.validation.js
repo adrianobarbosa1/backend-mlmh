@@ -81,6 +81,7 @@ const updateRegister = {
     nome: Joi.string().required(),
     email: Joi.string().email().required(),
     cpf: Joi.document().cpf(),
+    protocolo: Joi.string().required(),
     rg: Joi.string()
       .required()
       .error(() => {

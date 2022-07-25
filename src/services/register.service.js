@@ -5,8 +5,6 @@ const ApiError = require('../utils/ApiError');
 const { sendSmsMult } = require('./sms.service');
 const { gerarProtocolo, createWriteTxtProtocol } = require('../utils/functions');
 
-// const { register } = require('../validations/auth.validation');
-
 // Create a register
 const createRegister = async (registerBody) => {
   registerBody.integrantes.forEach((item) => {
@@ -57,12 +55,12 @@ const getCpfIfExist = async (cpf) => {
   }
 };
 
-const loginWithProtocol = async (protocol) => {
-  const userProtocol = await Register.find({ protocol });
-  if (!userProtocol) {
+const loginWithProtocol = async (protocolo) => {
+  const userRegister = await Register.findOne({ protocolo });
+  if (!userRegister) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Protocolo não encontrado');
   }
-  return userProtocol;
+  return userRegister;
 };
 
 // Get Register by cpf
@@ -113,6 +111,16 @@ const getZapAndProtocol = async () => {
   });
 };
 
+const updateRegisterService = async (updateBody) => {
+  const user = await Register.findOne({ protocolo: updateBody.protocolo });
+  if (!user) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+  }
+  Object.assign(user, updateBody);
+  await user.save();
+  return user;
+};
+
 module.exports = {
   createRegister,
   queryRegisters,
@@ -121,4 +129,5 @@ module.exports = {
   getZapAndProtocol,
   postSms,
   loginWithProtocol,
+  updateRegisterService,
 };

@@ -56,7 +56,14 @@ const sendSmsMult = async (to) => {
 
 const sendProtocolSms = async (to, nome, protocolo) => {
   const msg = `Olá, ${nome},
-  Seu cadastro foi realizado com sucesso , esse é o número do seu Protocolo: ${protocolo}`;
+  Seu cadastro foi realizado com sucesso no programa Meu Lote Minha História, esse é o número do seu Protocolo: ${protocolo}`;
+  const resp = await sendSms(to, msg);
+  return resp;
+};
+
+const sendMsgAtualizadoRegisterSms = async (to, nome, protocolo) => {
+  const msg = `Olá, ${nome},
+  Seu cadastro foi ATUALIZADO com sucesso no programa Meu Lote Minha História, usando o Protocolo: ${protocolo}`;
   const resp = await sendSms(to, msg);
   return resp;
 };
@@ -65,4 +72,5 @@ module.exports = {
   sendSms,
   sendProtocolSms,
   sendSmsMult,
+  sendMsgAtualizadoRegisterSms,
 };

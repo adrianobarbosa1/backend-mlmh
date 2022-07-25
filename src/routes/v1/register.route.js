@@ -1,6 +1,5 @@
 const express = require('express');
 const validate = require('../../middlewares/validate');
-const auth = require('../../middlewares/auth');
 const registerValidation = require('../../validations/register.validation');
 const registerController = require('../../controllers/register.controller');
 
@@ -9,7 +8,7 @@ const router = express.Router();
 router
   .route('/')
   .post(validate(registerValidation.createRegister), registerController.createRegister)
-  .put(auth('getUsers'), validate(registerValidation.updateRegister), registerController.updateRegister);
+  .put(validate(registerValidation.updateRegister), registerController.updateRegister);
 
 router.route('/zapandprotocolo').get(validate(registerValidation.sendZapAndProtocol), registerController.sendZapAndProtocol);
 // router.route('/send-sms').post(registerController.sendSms);

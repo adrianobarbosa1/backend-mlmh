@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const uniqueValidator = require('mongoose-unique-validator');
-const { roles } = require('../config/roles');
 const { toJSON, paginate } = require('./plugins');
 
 const registerSchema = mongoose.Schema(
@@ -65,7 +64,6 @@ const registerSchema = mongoose.Schema(
     ],
     protocolo: { type: String, required: true },
     sent_protocol: { type: Boolean, default: false },
-    role: { type: String, enum: roles, default: 'admin' },
     deletado: { type: Boolean, default: false },
   },
   { timestamps: true }
