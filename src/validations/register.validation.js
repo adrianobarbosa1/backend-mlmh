@@ -123,6 +123,7 @@ const updateRegister = {
           gf_rg_certidao: Joi.string().optional().allow(''),
           gf_pcd: Joi.string().optional().allow(''),
           gf_parentesco: Joi.string().optional().allow(''),
+          _id: Joi.string().optional().allow(''),
         })
       )
       .optional()
