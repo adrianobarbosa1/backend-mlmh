@@ -12,7 +12,7 @@ const createRegister = catchAsync(async (req, res) => {
 
 const updateRegister = catchAsync(async (req, res) => {
   const user = await registerService.updateRegisterService(req.body);
-  await smsService.sendMsgAtualizadoRegisterSms(user.fone_celular, user.nome, user.protocolo);
+  // await smsService.sendMsgAtualizadoRegisterSms(user.fone_celular, user.nome, user.protocolo);
   res.json({
     nome: user.nome,
     email: user.email,
