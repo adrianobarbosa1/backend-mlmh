@@ -107,7 +107,7 @@ const sendZapAndProtocol = catchAsync(async (req, res) => {
 
 const sendSms = catchAsync(async (req, res) => {
   // await smsService.sendProtocolSms();
-  // await registerService.postSms();
+  await registerService.postSms();
   res.status(httpStatus.CREATED).json({ message: 'ok' });
 });
 
